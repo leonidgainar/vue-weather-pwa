@@ -69,7 +69,7 @@ export default {
 
   methods: {
     getForecastData() {
-      weatherService.getForecast(this.location).then((response) => {
+      weatherService.getForecast(this.location, 3).then((response) => {
         const { forecastday } = response;
         this.forecastDays = forecastday.map(({ day, astro, date }) => {
           return {

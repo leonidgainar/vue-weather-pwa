@@ -20,6 +20,9 @@
           <v-col cols="12" lg="6">
             <CurrentWeatherCard :location="currentLocation" />
           </v-col>
+          <v-col cols="12">
+            <TodayForecastCard :location="currentLocation" />
+          </v-col>
         </v-row>
       </v-container>
       <ForecastCardsContainer
@@ -34,6 +37,7 @@
 import SearchLocation from "./components/SearchLocation";
 import CurrentWeatherCard from "./components/CurrentWeatherCard";
 import ForecastCardsContainer from "./components/ForecastCardsContainer";
+import TodayForecastCard from "./components/TodayForecastCard";
 
 import weatherService from "./services/weather";
 export default {
@@ -43,6 +47,7 @@ export default {
     SearchLocation,
     CurrentWeatherCard,
     ForecastCardsContainer,
+    TodayForecastCard,
   },
 
   data: () => ({

@@ -20,9 +20,9 @@ export default {
       });
   },
 
-  getForecast(location) {
+  getForecast(location, days = 3) {
     return api
-      .get(`forecast.json?key=${API_KEY}&q=${location}&days=3`)
+      .get(`forecast.json?key=${API_KEY}&q=${location}&days=${days}`)
       .then((response) => {
         return response.data.forecast;
       });

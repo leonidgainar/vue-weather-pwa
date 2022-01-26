@@ -3,10 +3,10 @@
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h5">
-          {{ location }}
+          {{ new Date(date).toDateString() }}
         </v-list-item-title>
         <v-list-item-subtitle>
-          {{ new Date(date).toDateString() }}
+          <span class="text-h6">{{ location }}</span>
         </v-list-item-subtitle>
       </v-list-item-content>
     </v-list-item>
