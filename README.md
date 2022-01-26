@@ -1,6 +1,6 @@
-# vue-weather
+# vue-weather-pwa
 
-## Live demo [here](https://vuetify-weather-app.netlify.app/)
+## Live demo [here](https://vue-weather-pwa.netlify.app/)
 
 ## Project setup
 

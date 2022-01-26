@@ -1,6 +1,6 @@
 {
-  "name": "vue-weather",
-  "version": "0.1.0",
+  "name": "vue-weather-pwa",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
