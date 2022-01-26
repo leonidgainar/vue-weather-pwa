@@ -7,6 +7,11 @@
     <v-main>
       <v-container>
         <v-row class="d-flex justify-center">
+          <v-col v-if="isOffline" cols="11" md="10">
+            <v-alert type="error" dismissible>
+              You are offline now, please connect to network and refresh page.
+            </v-alert>
+          </v-col>
           <v-col cols="11" md="8" lg="6">
             <SearchLocation @location-changed="onLocationChanged" />
           </v-col>
@@ -42,19 +47,28 @@ export default {
 
   data: () => ({
     currentLocation: null,
+    isOffline: null,
   }),
 
   created() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        this.setCurrentPosition,
-        this.positionError,
-        {
-          enableHighAccuracy: false,
-          timeout: 15000,
-          maximumAge: 0,
-        }
-      );
+    if (navigator.onLine) {
+      this.isOffline = false;
+    } else {
+      this.isOffline = true;
+    }
+
+    if (!this.currentLocation && !this.isOffline) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          this.setCurrentPosition,
+          this.positionError,
+          {
+            enableHighAccuracy: false,
+            timeout: 15000,
+            maximumAge: 0,
+          }
+        );
+      }
     }
   },
 
