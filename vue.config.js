@@ -2,10 +2,9 @@ module.exports = {
   pwa: {
     name: "VueWeather",
     themeColor: "#4DBA87",
-    workboxOptions: {
-      skipWaiting: true,
-      clientsClaim: true,
-    },
+    msTileColor: "#000000",
+    appleMobileWebAppCapable: "yes",
+    appleMobileWebAppStatusBarStyle: "black",
   },
   transpileDependencies: ["vuetify"],
 };
