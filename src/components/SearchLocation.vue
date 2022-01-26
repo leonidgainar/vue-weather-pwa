@@ -6,7 +6,7 @@
     hide-selected
     hide-no-data
     clearable
-    label="Search your location"
+    label="Search a city/location"
     placeholder="Start typing to search"
     prepend-icon="mdi-map-marker"
   >
