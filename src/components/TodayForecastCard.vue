@@ -84,16 +84,13 @@ export default {
       weatherService.getForecast(this.location, 1).then((response) => {
         const { hour, date } = response.forecastday[0];
         this.date = date;
-        this.forecastHours = hour.map(
-          ({ time, temp_c, condition, feelslike_c }) => {
-            return {
-              time,
-              temp_c,
-              condition,
-              feelslike_c,
-            };
-          }
-        );
+        this.forecastHours = hour.map(({ time, temp_c, condition }) => {
+          return {
+            time,
+            temp_c,
+            condition,
+          };
+        });
       });
     },
 
