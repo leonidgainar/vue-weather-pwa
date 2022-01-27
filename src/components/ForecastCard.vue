@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pb-4">
+  <v-card class="pb-4" height="100%">
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h5">
