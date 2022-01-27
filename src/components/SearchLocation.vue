@@ -10,6 +10,7 @@
     label="Search a city/location"
     placeholder="Start typing to search"
     prepend-icon="mdi-map-marker"
+    color="#4DBA87"
   >
   </v-autocomplete>
 </template>
