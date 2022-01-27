@@ -5,7 +5,7 @@
       <v-list-item two-line>
         <v-list-item-content>
           <v-list-item-title class="text-h5">
-            {{ new Date(date).toDateString() }}
+            {{ formatedDate }}
           </v-list-item-title>
           <v-list-item-subtitle>
             <span class="text-h6">{{ location }}</span>
@@ -16,22 +16,15 @@
       <v-card-text>
         <v-row>
           <v-col
+            :class="getTextColor(forecast.time)"
             cols="3"
             sm="2"
             md="1"
             v-for="forecast in forecastHours"
             :key="forecast.time"
           >
-            <p
-              class="text-center font-weight-bold mb-0"
-              :class="getTextColor(forecast.time)"
-            >
-              {{
-                new Date(forecast.time).toLocaleTimeString([], {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })
-              }}
+            <p class="text-center font-weight-bold mb-0">
+              {{ getFormatedTime(forecast.time) }}
             </p>
             <v-img
               :src="forecast.condition.icon"
@@ -39,10 +32,7 @@
               width="50"
               class="mx-auto"
             ></v-img>
-            <p
-              class="text-center font-weight-bold"
-              :class="getTextColor(forecast.time)"
-            >
+            <p class="text-center font-weight-bold">
               {{ forecast.temp_c }}&deg;C
             </p>
           </v-col>
@@ -73,6 +63,12 @@ export default {
     };
   },
 
+  computed: {
+    formatedDate() {
+      return new Date(this.date).toDateString();
+    },
+  },
+
   watch: {
     location() {
       this.getForecastData();
@@ -91,6 +87,13 @@ export default {
             condition,
           };
         });
+      });
+    },
+
+    getFormatedTime(time) {
+      return new Date(time).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
       });
     },
 

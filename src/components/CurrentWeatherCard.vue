@@ -7,7 +7,7 @@
         </v-list-item-title>
         <v-list-item-subtitle>
           Data was updated:
-          {{ new Date(weather.last_updated).toLocaleTimeString() }}
+          {{ formatedDate }}
         </v-list-item-subtitle>
       </v-list-item-content>
       <v-list-item-action>
@@ -143,6 +143,12 @@ export default {
     return {
       weather: null,
     };
+  },
+
+  computed: {
+    formatedDate() {
+      return new Date(this.weather.last_updated).toLocaleTimeString();
+    },
   },
 
   watch: {

@@ -3,7 +3,7 @@
     <v-list-item two-line>
       <v-list-item-content>
         <v-list-item-title class="text-h5">
-          {{ new Date(date).toDateString() }}
+          {{ formatedDate }}
         </v-list-item-title>
         <v-list-item-subtitle>
           <span class="text-h6">{{ location }}</span>
@@ -164,6 +164,12 @@ export default {
     sunset: {
       type: String,
       required: true,
+    },
+  },
+
+  computed: {
+    formatedDate() {
+      return new Date(this.date).toDateString();
     },
   },
 };

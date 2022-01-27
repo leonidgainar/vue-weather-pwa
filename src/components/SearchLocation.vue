@@ -5,6 +5,7 @@
     :search-input.sync="searchInput"
     hide-selected
     hide-no-data
+    hide-details
     clearable
     label="Search a city/location"
     placeholder="Start typing to search"
