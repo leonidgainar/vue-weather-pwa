@@ -51,10 +51,6 @@ export default {
     },
   },
 
-  created() {
-    this.getForecastData();
-  },
-
   data() {
     return {
       forecastDays: null,
@@ -89,6 +85,10 @@ export default {
         });
       });
     },
+  },
+
+  created() {
+    this.getForecastData();
   },
 };
 </script>

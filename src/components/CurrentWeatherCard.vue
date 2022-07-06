@@ -135,10 +135,6 @@ export default {
     },
   },
 
-  created() {
-    this.getWeatherData();
-  },
-
   data() {
     return {
       weather: null,
@@ -163,6 +159,10 @@ export default {
         this.weather = response;
       });
     },
+  },
+
+  created() {
+    this.getWeatherData();
   },
 };
 </script>

@@ -16,25 +16,31 @@
       <v-card-text>
         <v-row>
           <v-col
-            :class="getTextColor(forecast.time)"
             cols="3"
             sm="2"
             md="1"
             v-for="forecast in forecastHours"
             :key="forecast.time"
           >
-            <p class="text-center font-weight-bold mb-0">
-              {{ getFormatedTime(forecast.time) }}
-            </p>
-            <v-img
-              :src="forecast.condition.icon"
-              :alt="forecast.condition.text"
-              width="50"
-              class="mx-auto"
-            ></v-img>
-            <p class="text-center font-weight-bold">
-              {{ forecast.temp_c }}&deg;C
-            </p>
+            <v-sheet
+              :class="getTextColor(forecast.time)"
+              :color="isCurrentTime(forecast.time) ? 'grey lighten-3' : 'white'"
+              :elevation="isCurrentTime(forecast.time) ? 2 : 0"
+              rounded
+            >
+              <p class="text-center font-weight-bold mb-0">
+                {{ getFormatedTime(forecast.time) }}
+              </p>
+              <v-img
+                :src="forecast.condition.icon"
+                :alt="forecast.condition.text"
+                width="50"
+                class="mx-auto"
+              ></v-img>
+              <p class="text-center font-weight-bold">
+                {{ forecast.temp_c }}&deg;C
+              </p>
+            </v-sheet>
           </v-col>
         </v-row>
       </v-card-text>
@@ -50,10 +56,6 @@ export default {
       type: String,
       required: true,
     },
-  },
-
-  created() {
-    this.getForecastData();
   },
 
   data() {
@@ -109,6 +111,17 @@ export default {
       }
       return "black--text";
     },
+
+    isCurrentTime(time) {
+      const currentHour = new Date().getHours();
+      const referenceHour = new Date(time).getHours();
+
+      return referenceHour === currentHour ? true : false;
+    },
+  },
+
+  created() {
+    this.getForecastData();
   },
 };
 </script>

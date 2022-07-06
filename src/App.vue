@@ -55,28 +55,6 @@ export default {
     isOffline: null,
   }),
 
-  created() {
-    if (navigator.onLine) {
-      this.isOffline = false;
-    } else {
-      this.isOffline = true;
-    }
-
-    if (!this.currentLocation && !this.isOffline) {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          this.setCurrentPosition,
-          this.positionError,
-          {
-            enableHighAccuracy: false,
-            timeout: 15000,
-            maximumAge: 0,
-          }
-        );
-      }
-    }
-  },
-
   methods: {
     onLocationChanged(location) {
       if (location !== null) {
@@ -112,6 +90,28 @@ export default {
           break;
       }
     },
+  },
+
+  created() {
+    if (navigator.onLine) {
+      this.isOffline = false;
+    } else {
+      this.isOffline = true;
+    }
+
+    if (!this.currentLocation && !this.isOffline) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          this.setCurrentPosition,
+          this.positionError,
+          {
+            enableHighAccuracy: false,
+            timeout: 15000,
+            maximumAge: 0,
+          }
+        );
+      }
+    }
   },
 };
 </script>
