@@ -8,8 +8,13 @@
       <v-container>
         <v-row class="d-flex justify-center">
           <v-col v-if="isOffline" cols="11" md="10">
-            <v-alert type="error" dismissible>
+            <v-alert type="warning" dismissible>
               You are offline now, please connect to network and refresh page.
+            </v-alert>
+          </v-col>
+          <v-col v-if="errorMessage" cols="11" md="10">
+            <v-alert type="error" dismissible>
+              {{ errorMessage }}
             </v-alert>
           </v-col>
           <v-col cols="11" md="8" lg="6">
@@ -53,6 +58,7 @@ export default {
   data: () => ({
     currentLocation: null,
     isOffline: null,
+    errorMessage: "",
   }),
 
   methods: {
@@ -74,25 +80,28 @@ export default {
     positionError(error) {
       switch (error.code) {
         case error.PERMISSION_DENIED:
-          console.error("User denied the request for Geolocation.");
+          this.errorMessage = "User denied the request for Geolocation.";
           break;
 
         case error.POSITION_UNAVAILABLE:
-          console.error("Location information is unavailable.");
+          this.errorMessage = "Location information is unavailable.";
           break;
 
         case error.TIMEOUT:
-          console.error("The request to get user location timed out.");
+          this.errorMessage = "The request to get user location timed out.";
           break;
 
         case error.UNKNOWN_ERROR:
-          console.error("An unknown error occurred.");
+          this.errorMessage = "An unknown error occurred.";
           break;
+        default:
+          this.errorMessage =
+            "An unknown error occurred while getting user location.";
       }
     },
   },
 
-  created() {
+  mounted() {
     if (navigator.onLine) {
       this.isOffline = false;
     } else {
@@ -110,6 +119,8 @@ export default {
             maximumAge: 0,
           }
         );
+      } else {
+        this.errorMessage = "Geolocation is not supported by this browser.";
       }
     }
   },
